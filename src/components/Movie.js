@@ -10,7 +10,7 @@ const Movie = props => {
     ?
     <div className={`movie ${props.className}`}>
       <h2 className='movie_title'>{props.data.payload.Title}</h2>
-      <p>{props.data.payload.Year}</p>
+      <p className='movie__year'>{props.data.payload.Year}</p>
       <Scores ratings={props.data.payload.Ratings} average={props.data.payload.averageScore} />
       <img src={parseImageUrl(props.data.payload.Poster)} alt={props.data.payload.Title} className='movie__poster' />
       <p>{props.data.payload.Plot}</p>

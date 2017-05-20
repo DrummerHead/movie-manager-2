@@ -1,4 +1,5 @@
 .movie {
+  position: relative;
 }
 
 .movie__poster {
@@ -7,10 +8,23 @@
 }
 
 .movie_title {
+  position: relative;
   font-size: 2.5em;
   line-height: 1;
   border-style: solid none none;
   border-color: #ddd;
   border-width: .2em;
   padding: .3em 0 0;
+  margin: 0 0 .45em;
+  z-index: 500;
+}
+
+.movie__year {
+  position: absolute;
+  top: .55rem;
+  right: 1.1rem;
+  font-size: 4.15em;
+  color: #ddd;
+  font-weight: bold;
+  margin: 0;
 }
