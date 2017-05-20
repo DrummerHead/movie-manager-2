@@ -12,3 +12,13 @@ html {
 body {
   margin: 0;
 }
+
+a,
+a:visited {
+  transition: color 200ms ease-in;
+  color: #222;
+}
+
+a:hover {
+  color: blue;
+}

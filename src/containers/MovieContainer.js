@@ -11,7 +11,6 @@ const movieDetails = [
   'Runtime',
   'Country',
   'BoxOffice',
-  'Website',
 ];
 
 class MovieContainer extends React.Component {
