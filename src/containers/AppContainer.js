@@ -1,6 +1,6 @@
 import React from 'react';
 import App from '../components/App';
-import data from '../data/movies.json'
+import data from '../data/movies.json';
 
 class AppContainer extends React.Component {
   constructor() {
@@ -9,7 +9,7 @@ class AppContainer extends React.Component {
       data,
       sortBy: 'averageScore',
       filterBy: 'All',
-    }
+    };
     this.hydrateItem = this.hydrateItem.bind(this);
     this.sortingPredicate = this.sortingPredicate.bind(this);
     this.filterPredicate = this.filterPredicate.bind(this);
@@ -20,12 +20,10 @@ class AppContainer extends React.Component {
     this.setState(prevState => {
       return {
         ...prevState,
-        data: prevState.data.map(item =>
-          item.id === id
-            ? { ...item, payload }
-            : item
-        )
-      }
+        data: prevState.data.map(
+          item => (item.id === id ? { ...item, payload } : item)
+        ),
+      };
     });
   }
 
@@ -42,7 +40,10 @@ class AppContainer extends React.Component {
   }
 
   filterPredicate(item) {
-    return this.state.filterBy === 'All' || item.suitable.includes(this.state.filterBy);
+    return (
+      this.state.filterBy === 'All' ||
+      item.suitable.includes(this.state.filterBy)
+    );
   }
 
   setFilter(target) {
@@ -52,7 +53,15 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    return <App data={this.state.data} hydrateItem={this.hydrateItem} sortingPredicate={this.sortingPredicate} filterPredicate={this.filterPredicate} setFilter={this.setFilter} />
+    return (
+      <App
+        data={this.state.data}
+        hydrateItem={this.hydrateItem}
+        sortingPredicate={this.sortingPredicate}
+        filterPredicate={this.filterPredicate}
+        setFilter={this.setFilter}
+      />
+    );
   }
 }
 
