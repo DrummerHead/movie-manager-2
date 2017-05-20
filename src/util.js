@@ -48,3 +48,10 @@ export const barStyles = score => {
     ]),
   };
 };
+
+export const limitNumberPrecision = precision => number => {
+  const precisionMultiplier = Math.pow(10, precision);
+  return (
+    Math.round(parseFloat(number) * precisionMultiplier) / precisionMultiplier
+  );
+};

@@ -1,0 +1,30 @@
+.scores {
+  color: #fff;
+}
+
+.scores__item {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: .2rem .5rem;
+  font-size: .75em;
+  font-weight: 100;
+  text-shadow: .05em .05em .0025em rgba(0, 0, 0, .25);
+}
+
+.scores__item--average {
+  padding: .5rem;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.scores__item__label {
+  flex: 1 0;
+}
+
+.scores__item__score {
+  font-weight: 400;
+}
+
+.scores__item--average .scores__item__score {
+  font-weight: 800;
+}

@@ -1,30 +1,35 @@
 import React from 'react';
-import { normalizeScore, barStyles } from '../util';
+import { normalizeScore, barStyles, limitNumberPrecision } from '../util';
+import '../css/scores.css';
 
-const Scores = props => {
-  return (
-    <div className="scores">
-      <div
-        className="scores__item scores__item--average"
-        style={barStyles(props.average)}
-      >
-        <span>Score</span>
-        <strong>{props.average}</strong>
-      </div>
+const twoDecimal = limitNumberPrecision(2);
 
-      {props.ratings.map(rating => (
-        <div
-          className="scores__item"
-          key={rating.Source}
-          style={barStyles(normalizeScore(rating.Value))}
-        >
-          <span>{rating.Source}</span>
-          <span>{rating.Value}</span>
-          <strong>{normalizeScore(rating.Value)}</strong>
-        </div>
-      ))}
-    </div>
-  );
-};
+const Bar = props => (
+  <div
+    className={`scores__item ${props.className}`}
+    style={barStyles(props.score)}
+  >
+    <span className="scores__item__label">{props.label}</span>
+    <strong className="scores__item__score">{twoDecimal(props.score)}</strong>
+  </div>
+);
+
+const Scores = props => (
+  <div className="scores">
+    <Bar
+      className="scores__item--average"
+      score={props.average}
+      label="Score"
+    />
+
+    {props.ratings.map(rating => (
+      <Bar
+        key={rating.Source}
+        score={normalizeScore(rating.Value)}
+        label={rating.Source}
+      />
+    ))}
+  </div>
+);
 
 export default Scores;
