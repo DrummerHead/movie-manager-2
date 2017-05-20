@@ -59,11 +59,21 @@
       "border-right",
       "border-bottom",
       "border-left",
+      "border-style",
+      "border-top-style",
+      "border-right-style",
+      "border-bottom-style",
+      "border-left-style",
       "border-width",
       "border-top-width",
       "border-right-width",
       "border-bottom-width",
       "border-left-width",
+      "border-color",
+      "border-top-color",
+      "border-right-color",
+      "border-bottom-color",
+      "border-left-color",
 
       "padding",
       "padding-top",
@@ -93,18 +103,6 @@
       "transition-property",
       "transition-timing-function",
 
-      "border-style",
-      "border-top-style",
-      "border-right-style",
-      "border-bottom-style",
-      "border-left-style",
-
-      "border-color",
-      "border-top-color",
-      "border-right-color",
-      "border-bottom-color",
-      "border-left-color",
-
       "border-radius",
       "border-top-left-radius",
       "border-top-right-radius",
@@ -124,7 +122,6 @@
       "font-weight",
       "font-style",
       "font-variant",
-
 
       "letter-spacing",
       "list-style",
