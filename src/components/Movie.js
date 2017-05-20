@@ -6,14 +6,14 @@ const parseImageUrl = url =>
   url.replace(/\._V1_SX300/, '')
 
 const Movie = props => {
-  const content = props.render
+  const content = props.data.payload
     ?
     <div className={`movie ${props.className}`}>
-      <h2 className='movie_title'>{props.data.Title}</h2>
-      <p>{props.data.Year}</p>
-      <Scores ratings={props.data.Ratings} />
-      <img src={parseImageUrl(props.data.Poster)} alt={props.data.Title} className='movie__poster' />
-      <p>{props.data.Plot}</p>
+      <h2 className='movie_title'>{props.data.payload.Title}</h2>
+      <p>{props.data.payload.Year}</p>
+      <Scores ratings={props.data.payload.Ratings} average={props.data.payload.averageScore} />
+      <img src={parseImageUrl(props.data.payload.Poster)} alt={props.data.payload.Title} className='movie__poster' />
+      <p>{props.data.payload.Plot}</p>
     </div>
     :
     <div className={`movie movie--loading ${props.className}`}>Loading...</div>;

@@ -1,26 +1,16 @@
 import React from 'react';
 import Movie from '../components/Movie'
 import axios from 'axios'
+import { averageScores } from '../util';
 
 class MovieContainer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      data: {},
-      render: false,
-    };
-  }
-
   componentDidMount() {
     console.log(this.props.data.id);
     axios
       .get(`http://www.omdbapi.com/?i=${this.props.data.id}&tomatoes=true`)
       .then(response => {
         console.log(response);
-        this.setState({
-          data: response.data,
-          render: true,
-        });
+        this.props.hydrateItem(this.props.data.id, { ...response.data, averageScore: averageScores(response.data.Ratings)});
       })
       .catch(error => {
         console.error(error);
@@ -30,7 +20,7 @@ class MovieContainer extends React.Component {
 
   render() {
     return (
-      <Movie {...this.state} className={this.props.className} />
+      <Movie {...this.props} className={this.props.className} />
     );
   }
 }

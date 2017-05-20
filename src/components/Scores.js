@@ -1,4 +1,5 @@
 import React from 'react';
+import { normalizeScore } from '../util';
 
 const barWidth = function(score){
   var linear0100toMinMax = function(value, min, max){
@@ -21,7 +22,7 @@ const barWidth = function(score){
   };
   return {
     'width' : score + '%',
-    'background-color' : interpolateColors(
+    'backgroundColor' : interpolateColors(
       score,
       [
         { r:215, g:0,   b:0   },
@@ -34,30 +35,12 @@ const barWidth = function(score){
   };
 };
 
-var normalizeScore = number => {
-  const isPercentage = /%/.test(number);
-
-  if (isPercentage) {
-    return parseInt(number, 10);
-  } else {
-    const [,score, total] = /([^/]*)\/([^/]*)/.exec(number);
-    if (total === '10') {
-      return parseFloat(score) * 10;
-    } else if (total === '100') {
-      return parseInt(number, 10);
-    }
-  }
-};
-
-var averageScores = scores =>
-  scores.reduce((acc, curr) => acc + normalizeScore(curr.Value), 0) / scores.length
-
 const Scores = props => {
   return (
     <div className='scores'>
-      <div className='scores__item scores__item--average' style={barWidth(averageScores(props.ratings))}>
+      <div className='scores__item scores__item--average' style={barWidth(props.average)}>
         <span>Score</span>
-        <strong>{averageScores(props.ratings)}</strong>
+        <strong>{props.average}</strong>
       </div>
 
       {props.ratings.map(rating =>
