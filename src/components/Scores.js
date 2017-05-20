@@ -1,32 +1,26 @@
 import React from 'react';
 import { normalizeScore } from '../util';
 
-const barWidth = function(score) {
-  var linear0100toMinMax = function(value, min, max) {
-    var n = value * (max - min) / 100 + min;
+const barWidth = score => {
+  const linear0100toMinMax = (value, min, max) => {
+    const n = value * (max - min) / 100 + min;
     return [Math.floor(n), Math.ceil(n)];
   };
-  var interpolateColors = function(value, colors) {
+
+  const interpolateColors = (value, colors) => {
     if (colors.length === 2) {
-      return (
-        'rgb(' +
-        linear0100toMinMax(value, colors[0].r, colors[1].r)[0] +
-        ', ' +
-        linear0100toMinMax(value, colors[0].g, colors[1].g)[0] +
-        ', ' +
-        linear0100toMinMax(value, colors[0].b, colors[1].b)[0] +
-        ')'
-      );
+      return `rgb(${linear0100toMinMax(value, colors[0].r, colors[1].r)[0]},${linear0100toMinMax(value, colors[0].g, colors[1].g)[0]},${linear0100toMinMax(value, colors[0].b, colors[1].b)[0]})`;
     } else {
-      var numColors = colors.length - 1;
-      var colorIndexes = linear0100toMinMax(value, 0, numColors);
-      var newValue = (value - 100 / numColors * colorIndexes[0]) * numColors;
+      const numColors = colors.length - 1;
+      const colorIndexes = linear0100toMinMax(value, 0, numColors);
+      const newValue = (value - 100 / numColors * colorIndexes[0]) * numColors;
       return interpolateColors(newValue, [
         colors[colorIndexes[0]],
         colors[colorIndexes[1]],
       ]);
     }
   };
+
   return {
     width: score + '%',
     backgroundColor: interpolateColors(score, [
