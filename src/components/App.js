@@ -5,7 +5,9 @@ import '../css/billboard.css'
 
 const App = props =>
   <div className='billboard'>
-    {props.data.map(movie =>
+    {props.data
+      .sort(props.sortingPredicate)
+      .map(movie =>
       <MovieContainer key={movie.id} data={movie} className='billboard__item' hydrateItem={props.hydrateItem} />
     )}
   </div>

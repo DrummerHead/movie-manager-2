@@ -7,8 +7,10 @@ class AppContainer extends React.Component {
     super();
     this.state = {
       data,
+      sortBy: 'averageScore',
     }
     this.hydrateItem = this.hydrateItem.bind(this);
+    this.sortingPredicate = this.sortingPredicate.bind(this);
   }
 
   hydrateItem(id, payload) {
@@ -24,8 +26,20 @@ class AppContainer extends React.Component {
     });
   }
 
+  sortingPredicate(a, b) {
+    if (!a.payload || !b.payload) {
+      return 0;
+    }
+    switch (this.state.sortBy) {
+      case 'averageScore':
+        return b.payload.averageScore - a.payload.averageScore;
+      default:
+        return b.payload.averageScore - a.payload.averageScore;
+    }
+  }
+
   render() {
-    return <App data={this.state.data} hydrateItem={this.hydrateItem} />
+    return <App data={this.state.data} hydrateItem={this.hydrateItem} sortingPredicate={this.sortingPredicate} />
   }
 }
 
