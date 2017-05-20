@@ -13,6 +13,9 @@ const movieDetails = [
   'BoxOffice',
 ];
 
+const parseBoxOffice = value =>
+  value === 'N/A' ? 0 : parseInt(value.replace(/[$,]/g, ''), 10);
+
 class MovieContainer extends React.Component {
   componentDidMount() {
     if (!this.props.data.payload) {
@@ -23,6 +26,8 @@ class MovieContainer extends React.Component {
           this.props.hydrateItem(this.props.data.id, {
             ...response.data,
             averageScore: averageScores(response.data.Ratings),
+            duration: parseInt(response.data.Runtime || 0, 10),
+            revenue: parseBoxOffice(response.data.BoxOffice),
           });
         })
         .catch(error => {

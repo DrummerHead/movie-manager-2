@@ -2,18 +2,23 @@ import React from 'react';
 import App from '../components/App';
 import data from '../data/movies.json';
 
+const setSort = (sortDescending, a, b) => property =>
+  sortDescending ? b[property] - a[property] : a[property] - b[property];
+
 class AppContainer extends React.Component {
   constructor() {
     super();
     this.state = {
       data,
       sortBy: 'averageScore',
+      sortDescending: true,
       filterBy: 'All',
     };
     this.hydrateItem = this.hydrateItem.bind(this);
     this.sortingPredicate = this.sortingPredicate.bind(this);
     this.filterPredicate = this.filterPredicate.bind(this);
     this.setFilter = this.setFilter.bind(this);
+    this.setSort = this.setSort.bind(this);
   }
 
   hydrateItem(id, payload) {
@@ -31,12 +36,9 @@ class AppContainer extends React.Component {
     if (!a.payload || !b.payload) {
       return 0;
     }
-    switch (this.state.sortBy) {
-      case 'averageScore':
-        return b.payload.averageScore - a.payload.averageScore;
-      default:
-        return b.payload.averageScore - a.payload.averageScore;
-    }
+    return setSort(this.state.sortDescending, a.payload, b.payload)(
+      this.state.sortBy
+    );
   }
 
   filterPredicate(item) {
@@ -52,6 +54,13 @@ class AppContainer extends React.Component {
     });
   }
 
+  setSort(target) {
+    this.setState(prevState => ({
+      sortBy: target,
+      sortDescending: !prevState.sortDescending,
+    }));
+  }
+
   render() {
     return (
       <App
@@ -60,6 +69,7 @@ class AppContainer extends React.Component {
         sortingPredicate={this.sortingPredicate}
         filterPredicate={this.filterPredicate}
         setFilter={this.setFilter}
+        setSort={this.setSort}
       />
     );
   }
