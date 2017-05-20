@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.4;
+  font-family: sans-serif;
+  text-size-adjust: 100%;
+  color: #222;
+}
+
+body {
+  margin: 0;
+}
