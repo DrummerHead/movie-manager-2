@@ -8,9 +8,12 @@ class AppContainer extends React.Component {
     this.state = {
       data,
       sortBy: 'averageScore',
+      filterBy: 'All',
     }
     this.hydrateItem = this.hydrateItem.bind(this);
     this.sortingPredicate = this.sortingPredicate.bind(this);
+    this.filterPredicate = this.filterPredicate.bind(this);
+    this.setFilter = this.setFilter.bind(this);
   }
 
   hydrateItem(id, payload) {
@@ -38,8 +41,18 @@ class AppContainer extends React.Component {
     }
   }
 
+  filterPredicate(item) {
+    return this.state.filterBy === 'All' || item.suitable.includes(this.state.filterBy);
+  }
+
+  setFilter(target) {
+    this.setState({
+      filterBy: target,
+    });
+  }
+
   render() {
-    return <App data={this.state.data} hydrateItem={this.hydrateItem} sortingPredicate={this.sortingPredicate} />
+    return <App data={this.state.data} hydrateItem={this.hydrateItem} sortingPredicate={this.sortingPredicate} filterPredicate={this.filterPredicate} setFilter={this.setFilter} />
   }
 }
 
