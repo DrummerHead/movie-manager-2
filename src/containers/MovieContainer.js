@@ -3,6 +3,17 @@ import Movie from '../components/Movie';
 import axios from 'axios';
 import { averageScores } from '../util';
 
+const movieDetails = [
+  'Actors',
+  'Director',
+  'Awards',
+  'Genre',
+  'Runtime',
+  'Country',
+  'BoxOffice',
+  'Website',
+];
+
 class MovieContainer extends React.Component {
   componentDidMount() {
     if (!this.props.data.payload) {
@@ -22,7 +33,13 @@ class MovieContainer extends React.Component {
   }
 
   render() {
-    return <Movie {...this.props} className={this.props.className} />;
+    return (
+      <Movie
+        {...this.props}
+        className={this.props.className}
+        movieDetails={movieDetails}
+      />
+    );
   }
 }
 

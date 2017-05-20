@@ -1,0 +1,19 @@
+.datalist {
+  font-size: .8em;
+}
+
+.datalist__tuple {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: .25em 0;
+}
+
+.datalist__title {
+  flex: 0 1 5.25em;
+  padding: 0 .75em 0 0;
+  font-weight: 100;
+}
+
+.datalist__data {
+  flex: 1 0;
+}

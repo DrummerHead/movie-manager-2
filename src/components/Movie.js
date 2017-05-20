@@ -1,5 +1,6 @@
 import React from 'react';
 import Scores from './Scores';
+import DataList from './DataList';
 import '../css/movie.css';
 
 const parseImageUrl = url => url.replace(/\._V1_SX300/, '');
@@ -19,6 +20,7 @@ const Movie = props => {
           className="movie__poster"
         />
         <p>{props.data.payload.Plot}</p>
+        <DataList data={props.data.payload} select={props.movieDetails} />
       </div>
     : <div className={`movie movie--loading ${props.className}`}>
         Loading...
