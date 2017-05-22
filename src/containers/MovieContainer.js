@@ -2,6 +2,7 @@ import React from 'react';
 import Movie from '../components/Movie';
 import axios from 'axios';
 import { averageScores } from '../util';
+import apiKey from '../apiKey';
 
 const movieDetails = [
   'Actors',
@@ -20,7 +21,9 @@ class MovieContainer extends React.Component {
   componentDidMount() {
     if (!this.props.data.payload) {
       axios
-        .get(`http://www.omdbapi.com/?i=${this.props.data.id}&tomatoes=true`)
+        .get(
+          `http://www.omdbapi.com/?i=${this.props.data.id}&tomatoes=true&apikey=${apiKey}`
+        )
         .then(response => {
           console.log(response);
           this.props.hydrateItem(this.props.data.id, {
