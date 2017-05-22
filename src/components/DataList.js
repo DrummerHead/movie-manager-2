@@ -1,6 +1,13 @@
 import React from 'react';
 import '../css/datalist.css';
 
+const minutesToHours = minutes => {
+  const minutesInt = parseInt(minutes, 10);
+  const hoursFinal = parseInt(minutesInt / 60, 10);
+  const minutesFinal = `${minutesInt % 60}`.padStart(2, '0');
+  return `${hoursFinal}:${minutesFinal}`;
+};
+
 const addProps = props => {
   let addToProps = {
     data: {},
@@ -43,6 +50,15 @@ const addProps = props => {
         },
       },
       select: [...addToProps.select, 'IMDB'],
+    };
+  }
+  if (check(props.data.Runtime)) {
+    addToProps = {
+      data: {
+        ...addToProps.data,
+        Runtime: minutesToHours(props.data.Runtime),
+      },
+      select: [...addToProps.select],
     };
   }
 
