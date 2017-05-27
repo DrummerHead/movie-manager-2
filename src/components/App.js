@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieContainer from '../containers/MovieContainer';
+import config from '../config';
 import '../css/baseline.css';
 import '../css/billboard.css';
 
@@ -13,8 +14,9 @@ const App = props => (
   <div>
     <header>
       <Button onClick={props.setFilter} option="All" />
-      <Button onClick={props.setFilter} option="Mom" />
-      <Button onClick={props.setFilter} option="Pablo" />
+      {config.people.map(person =>
+        <Button key={person} onClick={props.setFilter} option={person} />
+      )}
       <Button onClick={props.setSort} option="averageScore" />
       <Button onClick={props.setSort} option="duration" />
       <Button onClick={props.setSort} option="revenue" />
