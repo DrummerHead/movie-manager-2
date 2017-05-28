@@ -3,10 +3,10 @@ import config from '../config';
 import '../css/controls.css';
 import '../css/button.css';
 
-const Button = props => (
+const Button = ({ activeOption, onClick }) => props => (
   <button
-    className={`button ${props.activeOption === props.option ? 'button--active' : ''}`}
-    onClick={() => props.onClick(props.option)}
+    className={`button ${activeOption === props.option ? 'button--active' : ''}`}
+    onClick={() => onClick(props.option)}
   >
     {props.option}
   </button>
@@ -28,52 +28,32 @@ class Controls extends React.PureComponent {
   }
 
   render() {
+    const ButtonFilter = Button({
+      activeOption: this.props.filteredBy,
+      onClick: this.props.setFilter,
+    });
+    const ButtonSort = Button({
+      activeOption: this.props.sortedBy,
+      onClick: this.props.setSort,
+    });
+
     return (
       <header
         className={`controls ${this.state.visible ? '' : 'controls--hidden'}`}
       >
         <div className="controls__group">
-          <span className="controls__label">
-            Audience:
-          </span>
-          <Button
-            onClick={this.props.setFilter}
-            activeOption={this.props.filteredBy}
-            option="All"
-          />
+          <span className="controls__label">Audience:</span>
+          <ButtonFilter option="All" />
           {config.people.map(person => (
-            <Button
-              key={person}
-              onClick={this.props.setFilter}
-              activeOption={this.props.filteredBy}
-              option={person}
-            />
+            <ButtonFilter key={person} option={person} />
           ))}
         </div>
         <div className="controls__group">
-          <span className="controls__label">
-            Sort By:
-          </span>
-          <Button
-            onClick={this.props.setSort}
-            activeOption={this.props.sortedBy}
-            option="averageScore"
-          />
-          <Button
-            onClick={this.props.setSort}
-            activeOption={this.props.sortedBy}
-            option="duration"
-          />
-          <Button
-            onClick={this.props.setSort}
-            activeOption={this.props.sortedBy}
-            option="revenue"
-          />
-          <Button
-            onClick={this.props.setSort}
-            activeOption={this.props.sortedBy}
-            option="Year"
-          />
+          <span className="controls__label">Sort By:</span>
+          <ButtonSort option="averageScore" />
+          <ButtonSort option="duration" />
+          <ButtonSort option="revenue" />
+          <ButtonSort option="Year" />
         </div>
         <span className="controls__latch" onClick={this.toggle}>
           {this.state.visible ? '▲' : '▼'}
