@@ -69,7 +69,9 @@ class AppContainer extends React.Component {
         sortingPredicate={this.sortingPredicate}
         filterPredicate={this.filterPredicate}
         setFilter={this.setFilter}
+        filteredBy={this.state.filterBy}
         setSort={this.setSort}
+        sortedBy={this.state.sortBy}
       />
     );
   }

@@ -1,0 +1,44 @@
+.controls {
+  display: flex;
+  position: relative;
+  flex-flow: row nowrap;
+  height: 4.5em;
+  padding: 1em;
+  transition: margin-top 100ms ease-out;
+  background-color: #ddd;
+  z-index: 750;
+}
+
+.controls--hidden {
+  margin-top: -4.5em;
+}
+
+.controls__group {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+}
+
+.controls__group + .controls__group {
+  margin-left: 1.25em;
+}
+
+.controls__label {
+  margin: 0 .75em;
+}
+
+.controls__label,
+.controls__group .button {
+  flex: 0 1 auto;
+}
+
+.controls__latch {
+  position: absolute;
+  right: 0;
+  bottom: -1.8em;
+  padding: .5em .3em;
+  line-height: 1;
+  color: #777;
+  background-color: #ddd;
+  cursor: pointer;
+}

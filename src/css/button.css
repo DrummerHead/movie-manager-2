@@ -1,0 +1,32 @@
+.button {
+  display: inline-block;
+  border: 1px solid transparent;
+  padding: .75em 1em;
+  font-size: .9rem;
+  line-height: 1;
+  transition: background-color .25s ease-out, color .25s ease-out;
+  border-radius: 0;
+  text-align: center;
+  color: #fefefe;
+  background-color: #929292;
+  cursor: pointer;
+  vertical-align: middle;
+  appearance: none;
+}
+
+.button:hover,
+.button:focus {
+  color: #fefefe;
+  background-color: #5e5e5e;
+}
+
+.button--active {
+  color: #fefefe;
+  background-color: #1779ba;
+}
+
+.button--active:hover,
+.button--active:focus {
+  color: #fefefe;
+  background-color: #14679e;
+}
