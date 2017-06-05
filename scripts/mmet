@@ -42,7 +42,9 @@ end
 
 omdb_file = %Q({
   "id" : "#{mid}",
-  "suitable" : #{write_suitables_array(suitable)}
+  "suitable" : #{write_suitables_array(suitable)},
+  "diskSpaceKb" : #{%x[du -sk].gsub(/\t[\s\S]*$/, '').to_i},
+  "pwd" : "#{%x[pwd].gsub(/\n/, '')}"
 }
 )
 

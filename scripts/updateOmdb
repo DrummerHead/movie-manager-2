@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# Add disk space and path information to omdb files that don't have it
+# (this script will not detect if this info is already present, just append)
+
+def getJustFolderPath omdbPath
+  omdbPath.gsub(/\/tt.*$/, '/')
+end
+
+def updateOmdb filePath
+  prev = IO.read(filePath)
+  justFolderPath = getJustFolderPath(filePath)
+  new = prev.gsub(/\n}/, ",\n  \"diskSpaceKb\" : #{%x[du -sk "#{justFolderPath}"].gsub(/\t[\s\S]*$/, '').to_i},\n  \"pwd\" : \"#{%x[realpath "#{justFolderPath}"].gsub(/\n/, '')}\"\n}")
+  IO.write(filePath, new)
+end
+
+folders = %x[find . -name "*.omdb"].split("\n")
+
+folders.map { |omdbPath| updateOmdb omdbPath }
