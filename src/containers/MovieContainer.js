@@ -19,7 +19,7 @@ const parseBoxOffice = value =>
 
 class MovieContainer extends React.Component {
   componentDidMount() {
-    if (!this.props.data.payload) {
+    if (!this.props.data.hasFetchedData) {
       axios
         .get(
           `http://www.omdbapi.com/?i=${this.props.data.id}&tomatoes=true&apikey=${config.apiKey}`

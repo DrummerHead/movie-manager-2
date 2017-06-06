@@ -6,22 +6,22 @@ import '../css/movie.css';
 const parseImageUrl = url => url.replace(/\._V1_SX300/, '');
 
 const Movie = props => {
-  const content = props.data.payload
+  const content = props.data.hasFetchedData
     ? <div className={`movie ${props.className}`}>
-        <h2 className="movie_title">{props.data.payload.Title}</h2>
-        <p className="movie__year">{props.data.payload.Year}</p>
+        <h2 className="movie_title">{props.data.Title}</h2>
+        <p className="movie__year">{props.data.Year}</p>
         <Scores
-          ratings={props.data.payload.Ratings}
-          average={props.data.payload.averageScore}
+          ratings={props.data.Ratings}
+          average={props.data.averageScore}
         />
         <img
-          src={parseImageUrl(props.data.payload.Poster)}
-          alt={props.data.payload.Title}
+          src={parseImageUrl(props.data.Poster)}
+          alt={props.data.Title}
           className="movie__poster"
         />
-        <p>{props.data.payload.Plot}</p>
+        <p>{props.data.Plot}</p>
         <DataList
-          data={{ ...props.data, ...props.data.payload }}
+          data={props.data}
           select={props.movieDetails}
         />
       </div>

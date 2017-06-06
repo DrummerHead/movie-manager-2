@@ -26,17 +26,17 @@ class AppContainer extends React.Component {
       return {
         ...prevState,
         data: prevState.data.map(
-          item => (item.id === id ? { ...item, payload } : item)
+          item => (item.id === id ? { ...item, ...payload, hasFetchedData: true } : item)
         ),
       };
     });
   }
 
   sortingPredicate(a, b) {
-    if (!a.payload || !b.payload) {
+    if (!a.hasFetchedData || !b.hasFetchedData) {
       return 0;
     }
-    return setSort(this.state.sortDescending, a.payload, b.payload)(
+    return setSort(this.state.sortDescending, a, b)(
       this.state.sortBy
     );
   }
