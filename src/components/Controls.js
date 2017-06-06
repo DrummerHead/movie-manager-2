@@ -3,12 +3,12 @@ import config from '../config';
 import '../css/controls.css';
 import '../css/button.css';
 
-const Button = ({ activeOption, onClick }) => props => (
+const Button = ({ activeOption, onClick }) => ({ option, label = option }) => (
   <button
-    className={`button ${activeOption === props.option ? 'button--active' : ''}`}
-    onClick={() => onClick(props.option)}
+    className={`button ${activeOption === option ? 'button--active' : ''}`}
+    onClick={() => onClick(option)}
   >
-    {props.option}
+    {label}
   </button>
 );
 
@@ -50,10 +50,11 @@ class Controls extends React.PureComponent {
         </div>
         <div className="controls__group">
           <span className="controls__label">Sort By:</span>
-          <ButtonSort option="averageScore" />
+          <ButtonSort option="averageScore" label="Score" />
           <ButtonSort option="duration" />
           <ButtonSort option="revenue" />
           <ButtonSort option="Year" />
+          <ButtonSort option="diskSpaceKb" label="Size" />
         </div>
         <span className="controls__latch" onClick={this.toggle}>
           {this.state.visible ? '▲' : '▼'}

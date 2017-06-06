@@ -12,6 +12,7 @@
   cursor: pointer;
   vertical-align: middle;
   appearance: none;
+  text-transform: capitalize;
 }
 
 .button:hover,
