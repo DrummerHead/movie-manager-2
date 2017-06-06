@@ -7,12 +7,12 @@
   transition: background-color .25s ease-out, color .25s ease-out;
   border-radius: 0;
   text-align: center;
+  text-transform: capitalize;
   color: #fefefe;
   background-color: #929292;
   cursor: pointer;
   vertical-align: middle;
   appearance: none;
-  text-transform: capitalize;
 }
 
 .button:hover,

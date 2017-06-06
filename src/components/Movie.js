@@ -20,10 +20,7 @@ const Movie = props => {
           className="movie__poster"
         />
         <p>{props.data.Plot}</p>
-        <DataList
-          data={props.data}
-          select={props.movieDetails}
-        />
+        <DataList data={props.data} select={props.movieDetails} />
       </div>
     : <div className={`movie movie--loading ${props.className}`}>
         Loading...

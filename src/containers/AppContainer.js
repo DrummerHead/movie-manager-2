@@ -26,7 +26,10 @@ class AppContainer extends React.Component {
       return {
         ...prevState,
         data: prevState.data.map(
-          item => (item.id === id ? { ...item, ...payload, hasFetchedData: true } : item)
+          item =>
+            item.id === id
+              ? { ...item, ...payload, hasFetchedData: true }
+              : item
         ),
       };
     });
@@ -36,9 +39,7 @@ class AppContainer extends React.Component {
     if (!a.hasFetchedData || !b.hasFetchedData) {
       return 0;
     }
-    return setSort(this.state.sortDescending, a, b)(
-      this.state.sortBy
-    );
+    return setSort(this.state.sortDescending, a, b)(this.state.sortBy);
   }
 
   filterPredicate(item) {
