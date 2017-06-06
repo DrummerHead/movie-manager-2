@@ -8,6 +8,16 @@ const minutesToHours = minutes => {
   return `${hoursFinal}:${minutesFinal}`;
 };
 
+const kbToH = kb => {
+  if (kb < 1024) {
+    return `${kb} Kb`;
+  } else if (kb < 1048576) {
+    return `${(kb / 1000).toFixed(0)} Mb`;
+  } else if (kb < 1073741824) {
+    return `${(kb / 1000 / 1000).toFixed(2)} Gb`;
+  }
+};
+
 const addProps = props => {
   let addToProps = {
     data: {},
@@ -16,6 +26,15 @@ const addProps = props => {
 
   const check = value => value && value !== 'N/A';
 
+  if (check(props.data.diskSpaceKb)) {
+    addToProps = {
+      data: {
+        ...addToProps.data,
+        Size: kbToH(props.data.diskSpaceKb),
+      },
+      select: [...addToProps.select, 'Size'],
+    };
+  }
   if (check(props.data.Website)) {
     addToProps = {
       data: {
