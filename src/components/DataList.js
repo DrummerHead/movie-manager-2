@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/datalist.css';
+import '../css/copy-text.css';
 
 const minutesToHours = minutes => {
   const minutesInt = parseInt(minutes, 10);
@@ -26,6 +27,7 @@ const addProps = props => {
 
   const check = value => value && value !== 'N/A';
 
+  // Welcome to the jungle
   if (check(props.data.diskSpaceKb)) {
     addToProps = {
       data: {
@@ -80,6 +82,19 @@ const addProps = props => {
       select: [...addToProps.select],
     };
   }
+  if (check(props.data.pwd)) {
+    addToProps = {
+      data: {
+        ...addToProps.data,
+        Folder: {
+          label: 'Open folder',
+          url: props.data.pwd,
+          isFileURL: true,
+        },
+      },
+      select: [...addToProps.select, 'Folder'],
+    };
+  }
 
   return {
     data: {
@@ -90,12 +105,57 @@ const addProps = props => {
   };
 };
 
+class CopyText extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      showURL: false,
+    };
+    this.handleShow = this.handleShow.bind(this);
+  }
+
+  handleShow(ev) {
+    ev.preventDefault();
+    this.setState({
+      showURL: true,
+    });
+    setTimeout(() => this.input.select(), 100);
+  }
+
+  render() {
+    return (
+      <div
+        className={`copy-text ${this.state.showURL ? 'copy-text--show-url' : ''} ${this.props.className}`}
+      >
+        <a href="" className="copy-text__trigger" onClick={this.handleShow}>
+          Copy Folder Path
+        </a>
+        <input
+          type="text"
+          defaultValue={`open "${this.props.data.url}"`}
+          className="copy-text__input"
+          ref={input => (this.input = input)}
+        />
+      </div>
+    );
+  }
+}
+
 const DataParse = props => {
-  const isLink = typeof props.data === 'object';
-  const data = isLink
-    ? <a href={props.data.url}>{props.data.label}</a>
-    : props.data;
-  return <div className="datalist__data">{data}</div>;
+  // This stuff is nasty
+  if (typeof props.data === 'object') {
+    if (props.data.isFileURL) {
+      return <CopyText data={props.data} className="datalist__data" />;
+    } else {
+      return (
+        <a href={props.data.url} className="datalist__data">
+          {props.data.label}
+        </a>
+      );
+    }
+  } else {
+    return <div className="datalist__data">{props.data}</div>;
+  }
 };
 
 const DataList = props => {

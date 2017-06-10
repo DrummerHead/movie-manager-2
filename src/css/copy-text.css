@@ -1,0 +1,16 @@
+.copy-text__trigger {
+  display: block;
+}
+
+.copy-text__input {
+  display: none;
+  width: 100%;
+}
+
+.copy-text--show-url .copy-text__trigger {
+  display: none;
+}
+
+.copy-text--show-url .copy-text__input {
+  display: block;
+}
