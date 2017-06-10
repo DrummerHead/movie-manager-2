@@ -3,7 +3,9 @@ import App from '../components/App';
 import data from '../data/movies.json';
 
 const setSort = (sortDescending, a, b) => property =>
-  sortDescending ? b[property] - a[property] : a[property] - b[property];
+  sortDescending
+    ? b[property] - a[property] || b.averageScore - a.averageScore
+    : a[property] - b[property] || b.averageScore - a.averageScore;
 
 class AppContainer extends React.Component {
   constructor() {
