@@ -1,5 +1,5 @@
 .copy-text__trigger {
-  display: block;
+  display: inline-block;
 }
 
 .copy-text__input {

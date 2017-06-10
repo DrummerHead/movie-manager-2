@@ -125,7 +125,7 @@ class CopyText extends React.PureComponent {
   render() {
     return (
       <div
-        className={`copy-text ${this.state.showURL ? 'copy-text--show-url' : ''} ${this.props.className}`}
+        className={`copy-text ${this.state.showURL ? 'copy-text--show-url' : ''}`}
       >
         <a href="" className="copy-text__trigger" onClick={this.handleShow}>
           Copy Folder Path
@@ -145,16 +145,16 @@ const DataParse = props => {
   // This stuff is nasty
   if (typeof props.data === 'object') {
     if (props.data.isFileURL) {
-      return <CopyText data={props.data} className="datalist__data" />;
+      return <CopyText data={props.data} />;
     } else {
       return (
-        <a href={props.data.url} className="datalist__data">
+        <a href={props.data.url}>
           {props.data.label}
         </a>
       );
     }
   } else {
-    return <div className="datalist__data">{props.data}</div>;
+    return <span>{props.data}</span>;
   }
 };
 
@@ -169,7 +169,9 @@ const DataList = props => {
             <div className="datalist__title">
               {key}
             </div>
-            <DataParse data={enrichedProps.data[key]} />
+            <div className="datalist__data">
+              <DataParse data={enrichedProps.data[key]} />
+            </div>
           </div>
         ))}
     </div>
