@@ -31,3 +31,10 @@
   color: #fefefe;
   background-color: #14679e;
 }
+
+@media (max-width: 1100px) {
+  .button {
+    padding-top: .5em;
+    padding-bottom: .5em;
+  }
+}
