@@ -2,6 +2,7 @@
   display: flex;
   position: relative;
   flex-flow: row nowrap;
+  align-items: baseline;
   height: 4.5em;
   padding: 1em;
   transition: margin-top 100ms ease-out;

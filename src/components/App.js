@@ -9,8 +9,10 @@ const App = props => (
     <Controls
       setFilter={props.setFilter}
       setSort={props.setSort}
+      toggleSortDirection={props.toggleSortDirection}
       filteredBy={props.filteredBy}
       sortedBy={props.sortedBy}
+      sortDescending={props.sortDescending}
     />
     <main className="billboard">
       {props.data

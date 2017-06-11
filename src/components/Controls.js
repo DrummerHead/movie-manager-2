@@ -56,6 +56,12 @@ class Controls extends React.PureComponent {
           <ButtonSort option="Year" />
           <ButtonSort option="diskSpaceKb" label="Size" />
         </div>
+        <div className="controls__group">
+          <span className="controls__label">Sort order:</span>
+          <button className="button" onClick={this.props.toggleSortDirection}>
+            {this.props.sortDescending ? 'Higher first' : 'Lower first'}
+          </button>
+        </div>
         <span className="controls__latch" onClick={this.toggle}>
           {this.state.visible ? '▲' : '▼'}
         </span>

@@ -21,6 +21,7 @@ class AppContainer extends React.Component {
     this.filterPredicate = this.filterPredicate.bind(this);
     this.setFilter = this.setFilter.bind(this);
     this.setSort = this.setSort.bind(this);
+    this.toggleSortDirection = this.toggleSortDirection.bind(this);
   }
 
   hydrateItem(id, payload) {
@@ -58,8 +59,13 @@ class AppContainer extends React.Component {
   }
 
   setSort(target) {
-    this.setState(prevState => ({
+    this.setState({
       sortBy: target,
+    });
+  }
+
+  toggleSortDirection() {
+    this.setState(prevState => ({
       sortDescending: !prevState.sortDescending,
     }));
   }
@@ -74,7 +80,9 @@ class AppContainer extends React.Component {
         setFilter={this.setFilter}
         filteredBy={this.state.filterBy}
         setSort={this.setSort}
+        toggleSortDirection={this.toggleSortDirection}
         sortedBy={this.state.sortBy}
+        sortDescending={this.state.sortDescending}
       />
     );
   }
