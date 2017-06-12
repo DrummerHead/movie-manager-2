@@ -16,4 +16,5 @@
 
 .datalist__data {
   flex: 1 0;
+  word-break: break-word;
 }

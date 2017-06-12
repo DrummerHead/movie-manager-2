@@ -16,3 +16,13 @@
     padding: 0;
   }
 }
+
+@media (max-width: 520px) {
+  .billboard {
+    font-size: 1em;
+  }
+
+  .billboard__item {
+    flex-basis: 100%;
+  }
+}
