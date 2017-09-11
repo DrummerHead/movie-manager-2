@@ -1,11 +1,13 @@
 import React from 'react';
 import MovieContainer from '../containers/MovieContainer';
 import Controls from './Controls';
+import LoadbarContainer from '../containers/LoadbarContainer';
 import '../css/baseline.css';
 import '../css/billboard.css';
 
 const App = props => (
   <div>
+    <LoadbarContainer data={props.data} />
     <Controls
       setFilter={props.setFilter}
       setSort={props.setSort}

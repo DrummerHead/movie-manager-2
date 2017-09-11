@@ -1,0 +1,10 @@
+.loadbar {
+  width: 100%;
+  height: .25em;
+  background-color: lightblue;
+}
+
+.loadbar__bar {
+  height: 100%;
+  background-color: darkblue;
+}
