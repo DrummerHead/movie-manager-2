@@ -11,7 +11,8 @@ class LoadbarContainer extends React.Component {
   }
 
   render() {
-    return <Loadbar percentage={this.getWidth(this.howManyHasFetchedData())} />;
+    const width = this.getWidth(this.howManyHasFetchedData());
+    return <Loadbar percentage={width} complete={width === 100} />;
   }
 }
 
