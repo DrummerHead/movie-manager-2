@@ -4,6 +4,10 @@ import axios from 'axios';
 import { averageScores } from '../util';
 import config from '../config';
 
+const movieAxios = axios.create({
+  timeout: 5000,
+});
+
 const movieDetails = [
   'Actors',
   'Director',
@@ -18,7 +22,7 @@ const parseBoxOffice = value =>
   value === 'N/A' ? 0 : parseInt(value.replace(/[$,]/g, ''), 10);
 
 const getMovieData = (props, times = 1) =>
-  axios
+  movieAxios
     .get(
       `http://www.omdbapi.com/?i=${props.data.id}&tomatoes=true&apikey=${config.apiKey}`
     )
