@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-movie_paths = ['..', '/Volumes/DrummerDiskOSX/2016-01-31-macbook-pro-2012-backup/Downloads/Utorrent/_movies']
+movie_paths = ['~/Downloads/torrent/_movies']
 
 def find_paths paths
   paths.map do |path|

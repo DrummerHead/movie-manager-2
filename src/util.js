@@ -14,10 +14,19 @@ export const normalizeScore = number => {
 };
 
 export const averageScores = scores =>
-  scores.reduce((acc, curr) => acc + normalizeScore(curr.Value), 0) /
-  scores.length;
+  scores.length > 0
+    ? scores.reduce((acc, curr) => acc + normalizeScore(curr.Value), 0) /
+        scores.length
+    : 0;
 
 export const barStyles = score => {
+  if (isNaN(score) || score === 0) {
+    return {
+      width: '100%',
+      backgroundColor: '#ff7070',
+    };
+  }
+
   const linear0100toMinMax = (value, min, max) => {
     const n = value * (max - min) / 100 + min;
     return [Math.floor(n), Math.ceil(n)];

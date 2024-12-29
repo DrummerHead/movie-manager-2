@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 
 suitable = {
- Mom: false,
- DH: false,
- Pablo: false
+ Tatiana: false,
+ Mom: false
 }
 
 
